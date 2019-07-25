@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
-@section('content')
-    My content
+@section('title')
+    Main
 @endsection
 
 
@@ -9,6 +9,9 @@
     Main
 @endsection
 
-@section('title')
-    Main
+
+@section('content')
+    My content
 @endsection
+
+
