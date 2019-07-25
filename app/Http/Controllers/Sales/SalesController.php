@@ -105,7 +105,7 @@ class SalesController extends Controller
         if(Arr::has($data, $request->id))
 
             Arr::set($data, "{$request->id}.2", $request->price);
-        $new_arr[] = $data;
+            $new_arr[] = $data;
 
         $request->session()->put('temp_item', $new_arr);
 

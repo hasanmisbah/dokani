@@ -276,7 +276,7 @@
             });
         }
 
-        $('#other_in, #discount_in').change(function(e){
+        $('#other_in, #discount_in').on('keyup keypress keydown change', function(e){
             var other_cost = $('#other_in').val();
             var discount = $('#discount_in').val();
             var total = $('#total_amount').html().replace('tk', '');
@@ -297,7 +297,6 @@
             var payable = discount? subtotal - discount : subtotal;
             $('#payable').val(payable);
         });
-
 
     </script>
 @endsection
