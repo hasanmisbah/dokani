@@ -60,4 +60,9 @@ class InvoiceController extends Controller
         return redirect()->back()->with(['message' => 'Successfully Invoice Created']);
 
     }
+    public function invoice_list(){
+        $invoice = Invoice::all();
+        return view('sales.invoice-list')->with(['invoice' => $invoice]);
+    }
+
 }

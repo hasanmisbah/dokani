@@ -28,7 +28,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="{{(Request::routeIs('sales') ? 'active':'')}}"><a href="{{route('sales')}}"><i class="fa fa-circle-o"></i> New Sales</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Invoice List</a></li>
+                    <li class="{{(Request::routeIs('invoice_list') ? 'active':'')}}"><a href="{{route('sales')}}"><a href="{{route('invoice_list')}}"><i class="fa fa-circle-o"></i> Invoice List</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Due List</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Sales Ledger</a></li>
                 </ul>

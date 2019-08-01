@@ -24,6 +24,9 @@ Route::get('/', 'Dashboard\DashboardController@index')->name('dashboard');
     Route::get('sales/temp_qty', 'Sales\SalesController@update_tmp_qty')->name('update_tmp_qty');
     Route::get('sales/temp_price', 'Sales\SalesController@update_tmp_price')->name('update_tmp_price');
 
+    //invoice
+    Route::get('sales/invoice', 'Sales\InvoiceController@invoice_list')->name('invoice_list');
+
 
     Route::post('invoice/new', 'Sales\InvoiceController@new_invoice')->name('new_invoice');
 //###### Sales ##########

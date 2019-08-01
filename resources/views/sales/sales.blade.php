@@ -59,11 +59,10 @@
 
                     </tbody>
 
-
                     <tfoot>
                     <tr>
-                        <th class="text-right" colspan="3">Total: </th>
-                        <th id="total_amount"></th>
+                        <th class="text-right" colspan="3">Sub Total: </th>
+                        <th data-amount="0" id="total_amount"></th>
                         <th></th>
                     </tr>
                     <tr>
@@ -77,11 +76,15 @@
                         <th></th>
                     </tr>
                     </tfoot>
-
                 </table>
 
-
             </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4"><h4>Total: <span id="all_total"></span></h4></div>
+            <div class="col-md-4"><h4>Due: <span id="remain_amount"></span></h4></div>
         </div>
 
         <div class="row">
@@ -194,7 +197,6 @@
                 $('.show_li_div').hide();
                 //alert();
             });
-
         });
 
         function set_product() {
@@ -205,7 +207,6 @@
 
                     if (result == 1)
                         get_product();
-
                 });
             });
         }
@@ -227,13 +228,13 @@
                     total_amount += (row[3]*row[2]);
                 });
 
-
-
                 $('#show_products_tbl').html(tbl_data);
                 $('#total_amount').html(total_amount+' tk');
+                $('#total_amount').data('amount', total_amount);
                 $('#sku').val('');
                 del_product();
                 update_qty_price();
+                input_amount_change();
 
             });
         }
@@ -259,7 +260,6 @@
 
                     if (result == 1)
                         get_product();
-
                 });
             });
 
@@ -271,32 +271,56 @@
 
                     if (result == 1)
                         get_product();
-
                 });
             });
         }
 
-        $('#other_in, #discount_in').on('keyup keypress keydown change', function(e){
-            var other_cost = $('#other_in').val();
-            var discount = $('#discount_in').val();
-            var total = $('#total_amount').html().replace('tk', '');
+        function input_amount_change() {
+            var other_costs = $('#other_in').val();
+            var discounts = $('#discount_in').val();
+            var totals = $('#total_amount').data('amount');
+            var payables = $('#payable').val();
+            var all_totals = (Number(totals) + Number(other_costs)) - discounts;
+            var remains = all_totals - payables;
 
-            if(other_cost > 1){
+            $('#other_cost').html(other_costs+' tk');
+            $('#discount').html(discounts+ ' tk');
+            $('#all_total').html(all_totals+ ' tk');
+            $('#remain_amount').html(remains+ ' tk');
+
+            $('#other_in, #discount_in, #payable').on('keyup keypress keydown change', function(e){
+                var other_cost = $('#other_in').val();
+                var discount = $('#discount_in').val();
+                var payable = $('#payable').val();
+                var total = $('#total_amount').data('amount');
+
+                var all_total = (Number(total) + Number(other_cost)) - discount;
+                var remain = all_total - payable;
+
                 $('#other_cost').html(other_cost+' tk');
-            }else{
-                $('#other_cost').html("");
-            }
-
-            if(discount > 1){
                 $('#discount').html(discount+ ' tk');
-            }else{
-                $('#discount').html("");
-            }
+                $('#all_total').html(all_total+ ' tk');
+                $('#remain_amount').html(remain+ ' tk');
+            });
 
-            var subtotal = other_cost? parseInt(other_cost)+parseInt(total) : total;
-            var payable = discount? subtotal - discount : subtotal;
-            $('#payable').val(payable);
+        }
+
+        $(function () {
+            $('#payable').dblclick(function(e){
+
+                var other_costs = $('#other_in').val();
+                var discounts = $('#discount_in').val();
+                var totals = $('#total_amount').data('amount');
+
+                var all_totals = (Number(totals) + Number(other_costs)) - discounts;
+
+                $(this).val(all_totals);
+
+                input_amount_change();
+
+            });
         });
+
 
     </script>
 @endsection
