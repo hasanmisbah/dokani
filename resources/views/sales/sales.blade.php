@@ -114,7 +114,6 @@
                 <button class="btn btn-primary" type="submit">Submit</button>
             </div>
         </div>
-
     </form>
 
 @endsection
@@ -274,6 +273,7 @@
                 });
             });
         }
+
 
         function input_amount_change() {
             var other_costs = $('#other_in').val();

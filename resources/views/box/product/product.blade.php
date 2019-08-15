@@ -16,9 +16,10 @@
                             <input type="text" name="name" class="form-control" placeholder="Name" required>
                         </div>
 
-                        <div class="input-group margin-bottom">
+                        <div class="input-group margin-bottom {{($errors->has('sku') ? 'has-error':'')}}">
                             <span class="input-group-addon">SKU</span>
                             <input type="text" name="sku" class="form-control" placeholder="SKU">
+
                         </div>
 
                         <div class="input-group margin-bottom">

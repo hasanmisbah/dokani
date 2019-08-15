@@ -11,4 +11,6 @@ class Cashbook extends Model
     protected $fillable = [
         'cashIN', 'cashOUT', 'trType', 'sector', 'ref', 'description'
     ];
+
+
 }

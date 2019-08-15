@@ -29,6 +29,9 @@ Route::get('/', 'Dashboard\DashboardController@index')->name('dashboard');
 
 
     Route::post('invoice/new', 'Sales\InvoiceController@new_invoice')->name('new_invoice');
+
+    Route::get('invoice/show/{id}', 'Sales\InvoiceController@show_invoice')->name('show_invoice');
+    Route::get('invoice/del/{id}', 'Sales\InvoiceController@del')->name('del_invoice');
 //###### Sales ##########
 
 //###### Customer ##########

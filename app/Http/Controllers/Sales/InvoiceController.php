@@ -56,13 +56,37 @@ class InvoiceController extends Controller
             DB::rollback();
             throw $e;
         }
-
-        return redirect()->back()->with(['message' => 'Successfully Invoice Created']);
-
+        return redirect()->route('show_invoice',['id' => $invoiceID]);
     }
+
     public function invoice_list(){
-        $invoice = Invoice::all();
+        $invoice = Invoice::orderBy('invoiceID', 'DESC')->get();
         return view('sales.invoice-list')->with(['invoice' => $invoice]);
+    }
+
+    public function show_invoice($id){
+        $table = Invoice::find($id);
+        return view('print.invoice.invoice')->with(['table' => $table]);
+    }
+
+
+    public function del($id){
+        DB::beginTransaction();
+        try {
+
+            //Add Payment in cashbook
+            $cashbook =Cashbook::where('sector', 'Invoice')->where('ref', $id)->delete();
+            //Add Payment in cashbook
+
+            $table = Invoice::find($id);
+            $table->delete();
+
+            DB::commit();
+        } catch (\Throwable $e) {
+            DB::rollback();
+            throw $e;
+        }
+        return redirect()->back()->with(['message' => 'Successfully Delete']);
     }
 
 }

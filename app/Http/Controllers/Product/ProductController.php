@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Product;
 
+use App\Http\Requests\ProductValidate;
 use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -14,7 +16,20 @@ class ProductController extends Controller
     }
 
 
-     public function save(Request $request){
+     public function save(ProductValidate $request){
+       //  dd($request->all());
+
+         /*$validator = Validator::make($request->all(), [
+             'name' => 'required|min:4',
+             'sku' => 'required|numeric|unique:product,sku',
+         ]);
+
+         if ($validator->fails()) {
+             return redirect()->back()->withErrors($validator)->withInput();
+
+         }*/
+
+
         $table = new Product();
         $table->name = $request->name;
         $table->sku = $request->sku;

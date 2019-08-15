@@ -11,4 +11,9 @@ class InvoiceItem extends Model
     protected $fillable = [
         'invoiceID', 'productID', 'price', 'qty', 'units'
     ];
+
+    public function product(){
+        return $this->belongsTo('App\Product', 'productID');
+    }
+
 }

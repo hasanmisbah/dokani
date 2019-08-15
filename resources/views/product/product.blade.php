@@ -12,9 +12,15 @@
 @section('content')
     <div class="row margin-bottom">
         <div class="col-md-6">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add new Product</button>
+            <button id="topModal" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add new Product</button>
         </div>
-        <div class="col-md-6"></div>
+        <div class="col-md-6">
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            @endif
+        </div>
     </div>
 
     <div class="row">
@@ -72,7 +78,22 @@
     </div>
 @endsection
 
+
+
 @section('script')
+    @if ($errors->any())
+        <script type="text/javascript">
+
+            $(function () {
+
+                //$('#myModal').modal('show');
+              //  $('#topModal').trigger('click');
+
+
+            });
+
+        </script>
+    @endif
     <script type="text/javascript">
         $(function () {
             $('.ediBtn').click(function () {
@@ -99,6 +120,8 @@
                 $('#ediModal [name=limits]').val(limits);
             });
         });
+
+
 
         $(function () {
             $('#example2').DataTable();
