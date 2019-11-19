@@ -18,6 +18,8 @@
 
             <li class="{{(Request::routeIs('dashboard') ? 'active':'')}}"><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
 
+            <!--Sales-->
+
             <li class="treeview {{Request::is('sales/*') == 'sales' ? 'active':''}}">
                 <a href="#">
                     <i class="fa fa-pie-chart"></i>
@@ -34,6 +36,10 @@
                 </ul>
             </li>
 
+            <!--Sales-->
+
+            <!--Purchase-->
+
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-laptop"></i>
@@ -43,12 +49,14 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class=""><a href="#"><i class="fa fa-circle-o"></i> New Purchase</a></li>
+                    <li class="{{(Request::routeIs('purchase') ? 'active':'')}}"><a href="{{route('purchase')}}"><i class="fa fa-circle-o"></i> New Purchase</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Invoice List</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Due List</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Purchase Ledger</a></li>
                 </ul>
             </li>
+
+            <!--Purchase-->
 
             <li><a href="#"><i class="fa fa-edit"></i> <span>Stock</span></a></li>
 

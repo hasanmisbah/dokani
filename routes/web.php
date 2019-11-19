@@ -31,8 +31,31 @@ Route::get('/', 'Dashboard\DashboardController@index')->name('dashboard');
     Route::post('invoice/new', 'Sales\InvoiceController@new_invoice')->name('new_invoice');
 
     Route::get('invoice/show/{id}', 'Sales\InvoiceController@show_invoice')->name('show_invoice');
+
+    Route::get('invoice/edit/{id}', 'Sales\InvoiceController@show_edit')->name('edit_invoice');
+    Route::post('invoice/edit/item', 'Sales\InvoiceController@edit_item')->name('edit_invoice_item');
+    Route::get('invoice/item/del/{id}', 'Sales\InvoiceController@del_item')->name('del_invoice_item');
+    Route::post('invoice/edit/oc_discount', 'Sales\InvoiceController@edit_oc_discount')->name('edit_invoice_discount');
+    Route::post('invoice/edit/edit_pay', 'Sales\InvoiceController@edit_pay')->name('edit_pay');
+    Route::get('invoice/edit/del_pay/{id}', 'Sales\InvoiceController@del_pay')->name('del_pay');
+    Route::post('invoice/edit/new_pay', 'Sales\InvoiceController@new_pay')->name('new_pay');
+
+
     Route::get('invoice/del/{id}', 'Sales\InvoiceController@del')->name('del_invoice');
 //###### Sales ##########
+
+    //###### purchase ##########
+
+    Route::get('purchase/new', 'Purchase\PurchaseController@index')->name('purchase');
+    Route::get('purchase/search', 'Purchase\PurchaseController@search_product')->name('p_search_sku');
+    Route::get('purchase/save_temp', 'Purchase\PurchaseController@save_temp')->name('p_temp_save');
+    Route::get('purchase/get_temp', 'Purchase\PurchaseController@get_temp_data')->name('p_temp_get');
+    Route::get('purchase/temp_del', 'Purchase\PurchaseController@temp_del')->name('p_temp_del');
+    Route::get('purchase/temp_qty', 'Purchase\PurchaseController@update_tmp_qty')->name('p_update_tmp_qty');
+    Route::get('purchase/temp_price', 'Purchase\PurchaseController@update_tmp_price')->name('p_update_tmp_price');
+
+
+    //###### purchase ##########
 
 //###### Customer ##########
 Route::get('customer', 'Customer\CustomerController@index')->name('customer');

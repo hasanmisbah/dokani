@@ -60,12 +60,7 @@
                                 <td>{{$grand_total - $row->payment($row->invoiceID)}}</td>
                                 <td class="text-right">
                                     <a class="btn btn-xs btn-warning view" href="{{route('show_invoice',['id' => $row->invoiceID])}}"><i class="fa fa-eye"></i></a>
-                                    <button class="btn btn-xs btn-success ediBtn"
-                                            data-invoiceID="{{$row->invoiceID}}"
-                                            data-customerID="{{$row->customerID}}"
-                                            data-discount="{{$row->discount}}"
-                                            data-otherCost="{{$row->otherCost}}"
-                                            data-toggle="modal" data-target="#ediModal"><i class="fa fa-pencil"></i></button>
+                                    <a class="btn btn-xs btn-success ediBtn" href="{{route('edit_invoice',['id' => $row->invoiceID])}}"><i class="fa fa-pencil"></i></a>
                                     <a href="{{route('del_invoice',['id' => $row->invoiceID])}}" onclick="return confirm('Are you sure to delete?');" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
 
                                 </td>

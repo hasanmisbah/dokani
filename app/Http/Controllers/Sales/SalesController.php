@@ -19,7 +19,6 @@ class SalesController extends Controller
         $table = Product::where('sku', 'like',  $request->search.'%')->limit(10)->get();
 
         return response()->json($table);
-
     }
 
     public function save_temp(Request $request){
@@ -30,8 +29,6 @@ class SalesController extends Controller
         $price = $table->price;
         $units = $table->units;
         $qty = 1;
-
-
 
         if ($request->session()->has('temp_item')) {
             $old_data = session('temp_item');
